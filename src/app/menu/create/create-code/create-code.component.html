@@ -1,0 +1,24 @@
+<div> <p>QR Code erzeugen</p> </div>
+
+<div>Passwort<input [(ngModel)]="password" type="text" placeholder="Password..."/></div>
+
+<div>Beschreibung<input [(ngModel)]="description" type="text" placeholder="Description..." /></div>
+
+<div>
+  Punkte
+  <input [(ngModel)]="points" type="number" />
+</div>
+
+<div>
+  <button (click)="generate()">Erzeuge QR Code</button>
+</div>
+
+<div *ngIf="jwt.length > 0">
+  <qrcode
+    (qrCodeURL)="onChangeURL($event)"
+    [qrdata]="jwt"
+    [width]="512"
+    [errorCorrectionLevel]="'M'"
+  ></qrcode>
+  <a [href]="dlLink" download="qrcode">Download</a>
+</div>
